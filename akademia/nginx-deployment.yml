@@ -33,6 +33,7 @@ spec:
         volumeMounts:
         # VolumeMounts are the volumes that your application uses.
         - mountPath: /var/www/html # The path that your application uses
+          name: idk
 ---
 apiVersion: v1
 kind: Service
