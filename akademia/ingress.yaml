@@ -65,16 +65,16 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: treafik-ingress
+  name: traefik-ingress
 spec:
   rules:
   - host: "backend.akademia.cc"
     http:
       paths:
-      - path: /treafik
+      - path: /traefik
         pathType: Prefix
         backend:
           service:
-            name: treafik
+            name: traefik
             port:
               number: 6070
