@@ -52,11 +52,3 @@ spec:
             name: whoami
             port:
               name: web
-      - path: /treafik
-        pathType: Prefix
-        backend:
-          service:
-            name: treafik
-            port:
-              name: dashboard
-
