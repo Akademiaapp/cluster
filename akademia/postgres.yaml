@@ -82,3 +82,45 @@ spec:
     - port: 5432
   selector:
     app: postgres
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prisma studio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prisma-studio
+  template:
+    metadata:
+      labels:
+        app: prisma-studio
+    spec:
+      containers:
+        - name: studio
+          image: 'codejamninja/prisma-studio'
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: POSTGRES_URL
+              value: 'postgresql://ps_user:SecurePassword@localhost:5432/ps_db'
+          ports:
+            - containerPort: 55555
+              name: studio
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: traefik-dashboard-ingress
+spec:
+  rules:
+  - host: "backend.akademia.cc"
+    http:
+      paths:
+      - path: /studio
+        pathType: Prefix
+        backend:
+          service:
+            name: prisma-studio
+            port:
+              name: studio
