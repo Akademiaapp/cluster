@@ -111,7 +111,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: traefik-dashboard-ingress
+  name: prisma-studio-ingress
 spec:
   rules:
   - host: "backend.akademia.cc"
