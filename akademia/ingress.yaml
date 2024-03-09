@@ -46,7 +46,9 @@ spec:
   ports:
     - targetPort: web
       port: 80
+      name: traefik-web
     - targetPort: dashboard
       port: 8080
+      name: traefik-dashboard
   selector:
     app: traefik
