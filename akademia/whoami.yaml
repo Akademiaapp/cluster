@@ -42,7 +42,8 @@ metadata:
   name: whoami-ingress
 spec:
   rules:
-  - http:
+  - host: "backend.akademia.cc"
+    http:
       paths:
       - path: /
         pathType: Prefix
@@ -51,3 +52,11 @@ spec:
             name: whoami
             port:
               name: web
+      - path: /treafik
+        pathType: Prefix
+        backend:
+          service:
+            name: treafik
+            port:
+              name: dashboard
+

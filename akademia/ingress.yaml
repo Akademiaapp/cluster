@@ -61,19 +61,3 @@ spec:
       port: 80
   selector:
     app: traefik
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: treafik-ingress
-spec:
-  rules:
-  - http:
-      paths:
-      - path: /treafik
-        pathType: Prefix
-        backend:
-          service:
-            name: traefik
-            port:
-              name: dashboard
