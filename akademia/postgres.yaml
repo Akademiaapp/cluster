@@ -86,7 +86,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prisma studio
+  name: prisma-studio
 spec:
   replicas: 1
   selector:
