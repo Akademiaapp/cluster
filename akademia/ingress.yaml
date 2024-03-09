@@ -77,5 +77,4 @@ spec:
           service:
             name: treafik
             port:
-              name: dashboard
               number: 6070
