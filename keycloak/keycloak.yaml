@@ -28,6 +28,8 @@ spec:
     passwordSecret:
       name: keycloak-db
       key: KC_DB_PASSWORD
+    database: keycloak
+    port: 25060
   hostname:
     hostname: auth.akademia.cc
   proxy:
