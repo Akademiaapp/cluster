@@ -34,7 +34,6 @@ spec:
   http:
     httpEnabled: false
     httpsPort: 8443
-    tlsSecret: keycloak-tls-secret
   ingress:
     enabled: false
   hostname:
