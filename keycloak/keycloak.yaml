@@ -60,10 +60,6 @@ spec:
             value: "true"
           - name: KC_HTTP_RELATIVE_PATH
             value: "/"
-          - name: KC_HOSTNAME_URL
-            value: "http://auth.akademia.cc/"
-          - name: KC_HOSTNAME_ADMIN_URL
-            value: "http://auth.akademia.cc/realms/master/admin/"
           - name: KC_DB
             value: "postgres"
           - name: KC_DB_URL
