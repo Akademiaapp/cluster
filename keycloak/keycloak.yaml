@@ -60,6 +60,10 @@ spec:
             value: "true"
           - name: KC_HTTP_RELATIVE_PATH
             value: "/"
+          - name: KC_HOSTNAME_URL
+            value: "http://10.244.0.130:8080/"
+          - name: KC_HOSTNAME_ADMIN_URL
+            value: "http://10.244.0.130:8080/realms/master/"
           - name: KC_DB
             value: "postgres"
           - name: KC_DB_URL
