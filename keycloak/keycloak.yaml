@@ -20,12 +20,6 @@ metadata:
   labels:
     app: keycloak
 spec:
-  strategy: 
-    type: "RollingUpdate"
-    rollingUpdate: 
-      maxSurge: 1
-      maxUnavailable: 1
-  minReadySeconds: 5
   replicas: 1
   selector:
     matchLabels:
@@ -37,9 +31,8 @@ spec:
     spec:
       containers:
         - name: keycloak
-          image: quay.io/keycloak/keycloak:24.0
-          args: ["start-dev", "--cache-stack=kubernetes"]
-          imagePullPolicy: "Always"
+          image: quay.io/keycloak/keycloak:24.0.1
+          args: ["start-dev"]
           env:
           - name: KEYCLOAK_ADMIN
             value: "admin"
@@ -47,6 +40,8 @@ spec:
             value: "admin"
           - name: KC_DB
             value: "postgres"
+          - name: KC_PROXY
+            value: "edge"
           - name: KC_DB_URL
             valueFrom:
               secretKeyRef:
@@ -82,12 +77,5 @@ spec:
               containerPort: 8080
           readinessProbe:
             httpGet:
-              path: /
+              path: /realms/master
               port: 8080
-          resources:
-            limits:
-              cpu: "1"
-              memory: "1Gi"
-            requests:
-              cpu: "100m"
-              memory: "256Mi"
