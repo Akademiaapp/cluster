@@ -32,53 +32,12 @@ spec:
     database: keycloak
     port: 25060
   http:
-    httpEnabled: false
+    httpEnabled: true
     httpsPort: 8443
-  ingress:
-    enabled: false
   hostname:
     hostname: auth.akademia.cc
     admin: admin.auth.akademia.cc
+    strict: false
+    strickBackchannel: false
   proxy:
     headers: xforwarded
-  additionalOptions:
-    - name: proxy
-      value: reencrypt
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: keycloak-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/backend-protocol: "https"
-    nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
-    kubernetes.io/tls-acme: 'true'
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-spec:
-  ingressClassName: nginx
-  tls:
-    - hosts:
-      - auth.akademia.cc
-      - admin.auth.akademia.cc
-      secretName: keycloak-tls-secret
-  rules:
-  - host: auth.akademia.cc
-    http:
-      paths:
-      - path: "/"
-        pathType: Prefix
-        backend:
-          service:
-            name: keycloak-service
-            port:
-              number: 8443
-  - host: admin.auth.akademia.cc
-    http:
-      paths:
-      - path: "/"
-        pathType: Prefix
-        backend:
-          service:
-            name: keycloak-service
-            port:
-              number: 8443
