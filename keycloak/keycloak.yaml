@@ -13,7 +13,7 @@ spec:
     app: keycloak
   type: ClusterIP
 ---
-apiVapiVersion: k8s.keycloak.org/v2alpha1
+apiVersion: k8s.keycloak.org/v2alpha1
 kind: Keycloak
 metadata:
   name: akademia-kc
