@@ -21,9 +21,7 @@ spec:
   instances: 1
   db:
     vendor: postgres
-    hostSecret:
-      name: keycloak-db
-      key: KC_DB_HOST
+    host: akademia-db-postgres-do-user-16040512-0.c.db.ondigitalocean.com
     usernameSecret:
       name: keycloak-db
       key: KC_DB_USERNAME
