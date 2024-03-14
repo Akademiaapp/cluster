@@ -15,11 +15,8 @@ spec:
       key: KC_DB_PASSWORD
     database: keycloak
     port: 25060
-  http:
-    httpEnabled: true
   hostname:
     hostname: auth.akademia.cc
-    strict: false
-    strictBackchannel: false
   proxy:
     headers: xforwarded # double check your reverse proxy sets and overwrites the X-Forwarded-* headers
+    
