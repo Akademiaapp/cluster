@@ -5,10 +5,10 @@ metadata:
 spec:
   instances: 1
   image: quay.io/phasetwo/phasetwo-keycloak:23
+  startOptimized: false
   db:
     vendor: postgres
     host: akademia-db-postgres-do-user-16040512-0.c.db.ondigitalocean.com
-    startOptimized: false
     usernameSecret:
       name: keycloak-db
       key: KC_DB_USERNAME
