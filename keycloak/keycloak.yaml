@@ -38,6 +38,6 @@ spec:
     hostname: auth.akademia.cc
     admin: admin.auth.akademia.cc
     strict: false
-    strickBackchannel: false
+    strictBackchannel: false
   proxy:
     headers: xforwarded
