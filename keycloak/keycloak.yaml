@@ -21,6 +21,12 @@ metadata:
   labels:
     app: keycloak
 spec:
+  strategy: 
+    type: "RollingUpdate"
+    rollingUpdate: 
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
   replicas: 1
   selector:
     matchLabels:
@@ -34,6 +40,7 @@ spec:
         - name: keycloak
           image: quay.io/keycloak/keycloak:24.0
           args: ["start", "--cache-stack=kubernetes"]
+          imagePullPolicy: "Always"
           env:
           - name: KEYCLOAK_ADMIN
             value: "admin"
@@ -56,7 +63,7 @@ spec:
           - name: KC_HOSTNAME_URL
             value: "http://auth.akademia.cc/"
           - name: KC_HOSTNAME_ADMIN_URL
-            value: "http://auth.akademia.cc/"
+            value: "http://auth.akademia.cc/realms/master/admin/"
           - name: KC_DB
             value: "postgres"
           - name: KC_DB_URL
