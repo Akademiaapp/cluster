@@ -52,11 +52,11 @@ spec:
           - name: KC_HTTP_ENABLED
             value: "true"
           - name: KC_HTTP_RELATIVE_PATH
-            value: "/auth"
+            value: "/"
           - name: KC_HOSTNAME_URL
-            value: "https://domain-name.com/keycloak/auth/"
+            value: "http://auth.akademia.cc/"
           - name: KC_HOSTNAME_ADMIN_URL
-            value: "https://domain-name.com/keycloak/auth/"
+            value: "http://auth.akademia.cc/"
           - name: KC_DB
             value: "postgres"
           - name: KC_DB_URL
