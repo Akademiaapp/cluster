@@ -39,7 +39,7 @@ spec:
       containers:
         - name: keycloak
           image: quay.io/keycloak/keycloak:24.0
-          args: ["start", "--cache-stack=kubernetes"]
+          args: ["start-dev", "--cache-stack=kubernetes"]
           imagePullPolicy: "Always"
           env:
           - name: KEYCLOAK_ADMIN
