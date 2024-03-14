@@ -38,40 +38,8 @@ spec:
             value: "admin"
           - name: KEYCLOAK_ADMIN_PASSWORD
             value: "admin"
-          - name: KC_DB
-            value: "postgres"
           - name: KC_PROXY
             value: "edge"
-          - name: KC_DB_URL
-            valueFrom:
-              secretKeyRef:
-                name: keycloak-db
-                key: KC_DB_URL
-          - name: KC_DB_URL_HOST
-            valueFrom:
-              secretKeyRef:
-                name: keycloak-db
-                key: KC_DB_URL_HOST
-          - name: KC_DB_URL_PORT
-            valueFrom:
-              secretKeyRef:
-                name: keycloak-db
-                key: KC_DB_URL_PORT
-          - name: KC_DB_URL_DATABASE
-            valueFrom:
-              secretKeyRef:
-                name: keycloak-db
-                key: KC_DB_URL_DATABASE
-          - name: KC_DB_USERNAME
-            valueFrom:
-              secretKeyRef:
-                name: keycloak-db
-                key: KC_DB_USERNAME
-          - name: KC_DB_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: keycloak-db
-                key: KC_DB_PASSWORD
           ports:
             - name: http
               containerPort: 8080
