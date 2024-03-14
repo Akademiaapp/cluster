@@ -21,7 +21,9 @@ spec:
   instances: 1
   db:
     vendor: postgres
-    host: postgres-db
+    hostSecret:
+      name: keycloak-db
+      key: KC_DB_HOST
     usernameSecret:
       name: keycloak-db
       key: KC_DB_USERNAME
