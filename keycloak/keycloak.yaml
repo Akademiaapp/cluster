@@ -31,14 +31,9 @@ spec:
       key: KC_DB_PASSWORD
     database: keycloak
     port: 25060
-  http:
-    httpEnabled: true
   hostname:
     hostname: auth.akademia.cc
     admin: admin.auth.akademia.cc
-    adminUrl: https://admin.auth.akademia.cc/
-    strict: false
-    strictBackchannel: false
   ingress:
     enabled: true
     annotations:
