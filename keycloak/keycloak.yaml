@@ -33,7 +33,9 @@ spec:
     port: 25060
   http:
     httpEnabled: true
-    httpsPort: 443
+    httpPort: 8081
+    httpsPort: 8080
+    tlsSecret: keycloak-tls-secret
   hostname:
     hostname: auth.akademia.cc
     admin: admin.auth.akademia.cc
