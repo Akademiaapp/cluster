@@ -24,6 +24,22 @@ spec:
     hostname: auth.akademia.cc
   ingress:
     enabled: false
+    unsupported:
+    podTemplate:
+      spec:
+        containers:
+          - name: keycloak
+            env:
+              - name: KC_ADMIN
+                valueFrom:
+                  secretKeyRef:
+                    name: keycloak-db
+                    key: KC_USERNAME
+              - name: KC_ADMIN_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    name: keycloak-db
+                    key: KC_PASSWORD
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -62,19 +78,3 @@ spec:
                   number: 8080
             path: /
             pathType: Prefix
-  unsupported:
-    podTemplate:
-      spec:
-        containers:
-          - name: keycloak
-            env:
-              - name: KC_ADMIN
-                valueFrom:
-                  secretKeyRef:
-                    name: keycloak-db
-                    key: KC_USERNAME
-              - name: KC_ADMIN_PASSWORD
-                valueFrom:
-                  secretKeyRef:
-                    name: keycloak-db
-                    key: KC_PASSWORD
