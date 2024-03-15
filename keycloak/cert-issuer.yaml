@@ -29,9 +29,3 @@ spec:
   commonName: auth.akademia.cc
   dnsNames:
     - auth.akademia.cc
-  acme:
-    config:
-      - http01:
-          ingressClass: nginx
-    domains:
-      - auth.akademia.cc
