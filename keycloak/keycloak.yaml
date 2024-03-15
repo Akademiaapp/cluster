@@ -17,6 +17,7 @@ spec:
       key: KC_DB_PASSWORD
     database: keycloak
     port: 25060
+  adminCredentialsSecretName: keycloak-admin-credentials
   http:
     httpEnabled: true
   hostname:
