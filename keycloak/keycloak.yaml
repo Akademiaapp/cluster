@@ -24,6 +24,8 @@ spec:
     hostname: auth.akademia.cc
   ingress:
     enabled: false
+  proxy:
+    headers: forwarded
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -34,6 +36,12 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/backend-protocol: HTTPS
     route.openshift.io/termination: reencrypt
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+      proxy_set_header X-Forwarded-Host $host;
+      proxy_set_header X-Forwarded-Port $server_port;
   labels:
     app: keycloak
     app.kubernetes.io/instance: akademia-kc
