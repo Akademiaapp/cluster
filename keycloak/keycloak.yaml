@@ -38,5 +38,17 @@ spec:
     adminHostname: admin.auth.akademia.cc
     strict: false
     strictBackchannel: false
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+    path: /
+    pathType: ImplementationSpecific
+    tls:
+      - hosts:
+          - auth.akademia.cc
+          - admin.auth.akademia.cc
+        secretName: keycloak-tls-secret
   proxy:
     headers: xforwarded
