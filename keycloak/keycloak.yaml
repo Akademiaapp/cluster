@@ -35,7 +35,7 @@ spec:
     httpEnabled: true
   hostname:
     hostname: auth.akademia.cc
-    admin: admin.auth.akademia.cc
+    adminUrl: /admin
     strict: false
     strictBackchannel: false
   ingress:
