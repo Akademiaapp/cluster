@@ -32,7 +32,8 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/rewrite-target: /
-    route.openshift.io/termination: edge
+    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+    route.openshift.io/termination: reencrypt
   labels:
     app: keycloak
     app.kubernetes.io/instance: akademia-kc
