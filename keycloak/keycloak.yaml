@@ -1,17 +1,3 @@
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: keycloak-tls-secret
-  namespace: default
-spec:
-  secretName: keycloak-tls-secret
-  issuerRef:
-    name: letsencrypt-prod
-    kind: ClusterIssuer
-  dnsNames:
-    - auth.akademia.cc
-    - admin.auth.akademia.cc
----
 apiVersion: k8s.keycloak.org/v2alpha1
 kind: Keycloak
 metadata:
@@ -35,12 +21,8 @@ spec:
     httpEnabled: true
   hostname:
     hostname: auth.akademia.cc
-    admin: admin.auth.akademia.cc
   ingress:
-    enabled: true
-    annotations:
-      kubernetes.io/ingress.class: nginx
-      cert-manager.io/cluster-issuer: letsencrypt-prod
+    enabled: false
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -54,7 +36,7 @@ metadata:
     app: keycloak
     app.kubernetes.io/instance: akademia-kc
     app.kubernetes.io/managed-by: keycloak-operator
-  name: akademia-kc-ingress-admin
+  name: akademia-kc-ingress
   namespace: default
   ownerReferences:
     - apiVersion: k8s.keycloak.org/v2alpha1
@@ -62,13 +44,18 @@ metadata:
       name: akademia-kc
       uid: a6ce949d-cac0-4b53-92d7-e210e822a916
 spec:
+  ingressClassName: nginx
   defaultBackend:
     service:
       name: akademia-kc-service
       port:
         number: 8080
+  tls:
+  - hosts:
+    - auth.akademia.cc
+    secretName: auth-akademia-cc-tls
   rules:
-    - host: admin.auth.akademia.cc
+    - host: auth.akademia.cc
       http:
         paths:
           - backend:
@@ -76,4 +63,5 @@ spec:
                 name: akademia-kc-service
                 port:
                   number: 8080
-            pathType: ImplementationSpecific
+            path: /
+            pathType: Prefix
