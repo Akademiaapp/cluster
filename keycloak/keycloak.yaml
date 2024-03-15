@@ -35,6 +35,7 @@ spec:
     httpEnabled: true
   hostname:
     hostname: auth.akademia.cc
+    adminHostname: admin.auth.akademia.cc
     strict: false
     strictBackchannel: false
   proxy:
