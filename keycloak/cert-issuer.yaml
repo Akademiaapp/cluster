@@ -2,7 +2,7 @@ apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
   name: letsencrypt-prod
-  namespace: ingress-nginx
+  namespace: cert-manager
 spec:
   acme:
     # The ACME server URL
@@ -17,6 +17,7 @@ spec:
       - http01:
           ingress:
             ingressClassName: nginx
+            class: nginx
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
