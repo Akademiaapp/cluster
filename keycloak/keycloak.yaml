@@ -33,6 +33,7 @@ spec:
     port: 25060
   http:
     httpEnabled: true
+    httpsPort: 443
   hostname:
     hostname: auth.akademia.cc
     admin: admin.auth.akademia.cc
