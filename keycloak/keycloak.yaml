@@ -39,11 +39,6 @@ metadata:
     app.kubernetes.io/managed-by: keycloak-operator
   name: akademia-kc-ingress-test
   namespace: default
-  ownerReferences:
-    - apiVersion: k8s.keycloak.org/v2alpha1
-      kind: Keycloak
-      name: akademia-kc
-      uid: a6ce949d-cac0-4b53-92d7-e210e822a916
 spec:
   ingressClassName: nginx
   defaultBackend:
