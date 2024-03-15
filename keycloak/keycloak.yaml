@@ -41,3 +41,43 @@ spec:
       cert-manager.io/cluster-issuer: letsencrypt-prod
   proxy:
     headers: xforwarded
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/backend-protocol: HTTP
+    route.openshift.io/termination: edge
+  labels:
+    app: keycloak
+    app.kubernetes.io/instance: akademia-kc
+    app.kubernetes.io/managed-by: keycloak-operator
+  name: akademia-kc-ingress
+  namespace: default
+  ownerReferences:
+    - apiVersion: k8s.keycloak.org/v2alpha1
+      kind: Keycloak
+      name: akademia-kc
+      uid: a6ce949d-cac0-4b53-92d7-e210e822a916
+spec:
+  defaultBackend:
+    service:
+      name: akademia-kc-service
+      port:
+        number: 8080
+  rules:
+    - host: admin.auth.akademia.cc
+      http:
+        paths:
+          - backend:
+              service:
+                name: akademia-kc-service
+                port:
+                  number: 8080
+            pathType: ImplementationSpecific
+status:
+  loadBalancer:
+    ingress:
+      - ip: 144.126.245.47
