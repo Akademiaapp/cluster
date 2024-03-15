@@ -20,6 +20,7 @@ spec:
   http:
     httpEnabled: true
   hostname:
+    adminUrl: https://auth.akademia.cc/
     hostname: auth.akademia.cc
   ingress:
     enabled: false
