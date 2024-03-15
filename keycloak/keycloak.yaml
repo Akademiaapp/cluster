@@ -43,10 +43,5 @@ spec:
     annotations:
       kubernetes.io/ingress.class: nginx
       cert-manager.io/cluster-issuer: letsencrypt-prod
-    tls:
-      - hosts:
-          - auth.akademia.cc
-          - admin.auth.akademia.cc
-        secretName: keycloak-tls-secret
   proxy:
     headers: xforwarded
