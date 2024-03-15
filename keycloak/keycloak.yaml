@@ -33,9 +33,6 @@ spec:
     port: 25060
   http:
     httpEnabled: true
-    httpPort: 8081
-    httpsPort: 8080
-    tlsSecret: keycloak-tls-secret
   hostname:
     hostname: auth.akademia.cc
     admin: admin.auth.akademia.cc
@@ -44,8 +41,6 @@ spec:
     annotations:
       kubernetes.io/ingress.class: nginx
       cert-manager.io/cluster-issuer: letsencrypt-prod
-  proxy:
-    headers: xforwarded
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
