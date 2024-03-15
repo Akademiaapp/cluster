@@ -32,7 +32,7 @@ spec:
     database: keycloak
     port: 25060
   http:
-    httpEnabled: false
+    httpEnabled: true
   hostname:
     hostname: auth.akademia.cc
     strict: false
