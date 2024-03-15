@@ -24,7 +24,7 @@ spec:
     hostname: auth.akademia.cc
   ingress:
     enabled: false
-    unsupported:
+  unsupported:
     podTemplate:
       spec:
         containers:
