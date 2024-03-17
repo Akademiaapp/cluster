@@ -18,16 +18,3 @@ spec:
           ingress:
             ingressClassName: nginx
             class: nginx
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: auth-akademia-cc-tls
-  namespace: default
-spec:
-  secretName: auth-akademia-cc-tls
-  issuerRef:
-    name: letsencrypt-prod
-  commonName: auth.akademia.cc
-  dnsNames:
-    - auth.akademia.cc
