@@ -23,7 +23,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: auth-akademia-cc-tls
-  namespace: ingress-nginx
+  namespace: default
 spec:
   secretName: auth-akademia-cc-tls
   issuerRef:
