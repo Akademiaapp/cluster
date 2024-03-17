@@ -4,6 +4,8 @@ metadata:
   name: akademia-kc
   namespace: default
 spec:
+  image: quay.io/phasetwo/phasetwo-keycloak:23
+  startOptimized: false
   instances: 1
   db:
     vendor: postgres
