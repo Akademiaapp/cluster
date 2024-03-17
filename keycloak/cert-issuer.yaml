@@ -17,6 +17,6 @@ spec:
       - dns01:
           cloudflare:
             email: jonathan@bangert.dk
-            apiTokenSecretRef:
-              name: cloudflare-api-token-secret
-              key: api-token
+            apiKeySecretRef:
+              name: cloudflare-api-key-secret
+              key: api-key
