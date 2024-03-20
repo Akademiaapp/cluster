@@ -40,6 +40,21 @@ spec:
   dnsNames:
     - api.akademia.cc
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: akademia-api-service
+  namespace: default
+spec:
+  ports:
+    - name: http
+      port: 3000
+      protocol: TCP
+      targetPort: 3000
+  selector:
+    app: api
+  type: ClusterIP
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -70,7 +85,7 @@ spec:
         paths:
           - backend:
               service:
-                name: akademia-api
+                name: akademia-api-service
                 port:
                   number: 3000
             path: /
