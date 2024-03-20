@@ -70,7 +70,7 @@ spec:
         paths:
           - backend:
               service:
-                name: akademia-kc-service
+                name: akademia-api
                 port:
                   number: 3000
             path: /
