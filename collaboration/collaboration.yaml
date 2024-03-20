@@ -74,7 +74,7 @@ spec:
     service:
       name: akademia-collaboration-service
       port:
-        number: 3000
+        number: 8090
   tls:
   - hosts:
     - collaboration.akademia.cc
