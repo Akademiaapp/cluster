@@ -1,0 +1,125 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: uptime-kuma
+  namespace: uptime-kuma
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: uptime-kuma
+  template:
+    metadata:
+      labels:
+        app: uptime-kuma
+    spec:
+      # Mount the PVC
+      volumes:
+        - name: data-mount
+          persistentVolumeClaim:
+            claimName: uptime-data-claim
+      containers:
+        - name: uptime-kuma
+          image: louislam/uptime-kuma:latest
+          # expose the container's port
+          ports:
+            - containerPort: 3001
+          # Pass the mount into the container
+          volumeMounts:
+            - mountPath: '/app/data'
+              name: data-mount
+          # optional but recommended to set usage limits
+          resources:
+            limits:
+              cpu: 500m
+              memory: 256Mi
+            requests:
+              cpu: 250m
+              memory: 128Mi
+          imagePullPolicy: IfNotPresent
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: uptime-kuma
+  namespace: uptime-kuma
+  labels:
+    app: uptime-kuma
+spec:
+  type: NodePort
+  ports:
+    # Maps the container's port to 80. If you want to use it on a different port, change it here.
+    - port: 80
+      targetPort: 3001
+      protocol: TCP
+  selector:
+    app: uptime-kuma
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: uptime-data
+  namespace: uptime-kuma
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: uptime-data
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: uptime-data-claim
+  namespace: uptime-kuma
+spec:
+  storageClassName: uptime-data
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: uptime-kuma
+  namespace: uptime-kuma
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/backend-protocol: HTTP
+spec:
+  rules:
+    - host: status.akademia.cc
+      http:
+        paths:
+          - backend:
+              service:
+                name: uptime-kuma
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
+  tls:
+  - hosts:
+    - status.akademia.cc
+    secretName: uptime-kuma-tls
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: uptime-kuma-tls
+  namespace: uptime-kuma
+spec:
+  secretName: uptime-kuma-tls
+  issuerRef:
+    name: letsencrypt-prod
+  commonName: status.akademia.cc
+  dnsNames:
+    - status.akademia.cc
