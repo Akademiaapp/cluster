@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: uptime-kuma
+  name: akademia-status
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: uptime-kuma
+      app: status
   template:
     metadata:
       labels:
-        app: uptime-kuma
+        app: status
     spec:
       # Mount the PVC
       volumes:
@@ -18,7 +18,7 @@ spec:
           persistentVolumeClaim:
             claimName: uptime-data-claim
       containers:
-        - name: uptime-kuma
+        - name: status
           image: louislam/uptime-kuma:latest
           # expose the container's port
           ports:
@@ -47,7 +47,7 @@ spec:
       targetPort: 3001
       protocol: TCP
   selector:
-    app: uptime-kuma
+    app: status
   type: ClusterIP
 ---
 apiVersion: v1
@@ -86,15 +86,15 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/backend-protocol: HTTP
   labels:
-    app: uptime-kuma
-    app.kubernetes.io/instance: uptime-kuma
-  name: uptime-kuma-ingress
+    app: status
+    app.kubernetes.io/instance: status
+  name: status-ingress
   namespace: default
 spec:
   ingressClassName: nginx
   defaultBackend:
     service:
-      name: uptime-kuma
+      name: status
       port:
         number: 80
   rules:
@@ -103,7 +103,7 @@ spec:
         paths:
           - backend:
               service:
-                name: uptime-kuma
+                name: status
                 port:
                   number: 80
             path: /
