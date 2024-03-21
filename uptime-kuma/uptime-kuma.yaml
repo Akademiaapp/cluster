@@ -67,6 +67,8 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Delete
   storageClassName: uptime-data
+  local:
+    path: /mnt/data
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
