@@ -40,18 +40,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: uptime-kuma
-  labels:
-    app: uptime-kuma
+  name: akademia-status-service
 spec:
-  type: NodePort
   ports:
-    # Maps the container's port to 80. If you want to use it on a different port, change it here.
-    - port: 80
+    - port: 3001
       targetPort: 3001
       protocol: TCP
   selector:
     app: uptime-kuma
+  type: ClusterIP
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -83,13 +80,23 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: uptime-kuma
   annotations:
-    kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/backend-protocol: HTTP
+  labels:
+    app: uptime-kuma
+    app.kubernetes.io/instance: uptime-kuma
+  name: uptime-kuma-ingress
+  namespace: default
 spec:
+  ingressClassName: nginx
+  defaultBackend:
+    service:
+      name: uptime-kuma
+      port:
+        number: 80
   rules:
     - host: status.akademia.cc
       http:
@@ -104,14 +111,15 @@ spec:
   tls:
   - hosts:
     - status.akademia.cc
-    secretName: uptime-kuma-tls
+    secretName: status-akademia-cc-tls
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: uptime-kuma-tls
+  name: status-akademia-cc-tls
+  namespace: default
 spec:
-  secretName: uptime-kuma-tls
+  secretName: status-akademia-cc-tls
   issuerRef:
     name: letsencrypt-prod
   commonName: status.akademia.cc
