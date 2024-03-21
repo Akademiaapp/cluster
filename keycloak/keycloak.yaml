@@ -51,7 +51,6 @@ spec:
   secretName: auth-akademia-cc-tls
   issuerRef:
     name: letsencrypt-prod
-  commonName: auth.akademia.cc
   dnsNames:
     - auth.akademia.cc
 ---
