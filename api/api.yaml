@@ -26,6 +26,16 @@ spec:
             secretKeyRef:
               name: akademia-db
               key: DATABASE_URL
+        - name: OPENOBSERVE_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: openobserve
+              key: ZO_ROOT_USER_EMAIL
+        - name: OPENOBSERVE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: openobserve
+              key: ZO_ROOT_USER_PASSWORD
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
