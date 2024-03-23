@@ -36,7 +36,6 @@ spec:
   secretName: collaboration-akademia-cc-tls
   issuerRef:
     name: letsencrypt-prod
-  commonName: collaboration.akademia.cc
   dnsNames:
     - collaboration.akademia.cc
 ---

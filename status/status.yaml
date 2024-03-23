@@ -122,6 +122,5 @@ spec:
   secretName: status-akademia-cc-tls
   issuerRef:
     name: letsencrypt-prod
-  commonName: status.akademia.cc
   dnsNames:
     - status.akademia.cc

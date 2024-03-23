@@ -88,7 +88,6 @@ spec:
   secretName: logs-akademia-cc-tls
   issuerRef:
     name: letsencrypt-prod
-  commonName: logs.akademia.cc
   dnsNames:
     - logs.akademia.cc
 ---
