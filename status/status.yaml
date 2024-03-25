@@ -122,5 +122,6 @@ spec:
   secretName: status-akademia-cc-tls
   issuerRef:
     name: letsencrypt-prod
+    kind: ClusterIssuer
   dnsNames:
     - status.akademia.cc
