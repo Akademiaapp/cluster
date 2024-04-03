@@ -21,7 +21,7 @@ spec:
   http:
     httpEnabled: true
   hostname:
-    adminUrl: https://auth.akademia.cc/
+    adminUrl: https://akademia-auth.arctix.dev/
     hostname: auth.akademia.cc
   ingress:
     enabled: false
@@ -54,6 +54,18 @@ spec:
   dnsNames:
     - auth.akademia.cc
 ---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: auth-akademia-arctix-cc-tls
+  namespace: default
+spec:
+  secretName: auth-akademia-arctix-cc-tls
+  issuerRef:
+    name: letsencrypt-prod
+  dnsNames:
+    - akademia-auth.arctix.dev
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -81,6 +93,9 @@ spec:
   - hosts:
     - auth.akademia.cc
     secretName: auth-akademia-cc-tls
+  - hosts:
+    - akademia-auth.arctix.dev
+    secretName: auth-akademia-arctix-cc-tls
   rules:
     - host: auth.akademia.cc
       http:
