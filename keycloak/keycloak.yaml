@@ -63,6 +63,7 @@ spec:
   secretName: auth-akademia-arctix-cc-tls
   issuerRef:
     name: letsencrypt-prod
+    kind: ClusterIssuer
   dnsNames:
     - akademia-auth.arctix.dev
 ---
