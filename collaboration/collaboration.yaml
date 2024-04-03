@@ -38,6 +38,7 @@ spec:
     name: letsencrypt-prod
   dnsNames:
     - collaboration.akademia.cc
+    - akademia-collaboration.arctix.dev
 ---
 apiVersion: v1
 kind: Service
@@ -77,6 +78,7 @@ spec:
   tls:
   - hosts:
     - collaboration.akademia.cc
+    - akademia-collaboration.arctix.dev
     secretName: collaboration-akademia-cc-tls
   rules:
     - host: collaboration.akademia.cc
