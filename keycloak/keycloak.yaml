@@ -53,18 +53,6 @@ spec:
     name: letsencrypt-prod
   dnsNames:
     - auth.akademia.cc
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: auth-akademia-arctix-cc-tls
-  namespace: default
-spec:
-  secretName: auth-akademia-arctix-cc-tls
-  issuerRef:
-    name: letsencrypt-prod
-    kind: ClusterIssuer
-  dnsNames:
     - akademia-auth.arctix.dev
 ---
 apiVersion: networking.k8s.io/v1
@@ -93,10 +81,8 @@ spec:
   tls:
   - hosts:
     - auth.akademia.cc
-    secretName: auth-akademia-cc-tls
-  - hosts:
     - akademia-auth.arctix.dev
-    secretName: auth-akademia-arctix-cc-tls
+    secretName: auth-akademia-cc-tls
   rules:
     - host: auth.akademia.cc
       http:
