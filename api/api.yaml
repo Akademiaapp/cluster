@@ -46,6 +46,7 @@ spec:
   secretName: api-akademia-cc-tls
   issuerRef:
     name: letsencrypt-prod
+    kind: ClusterIssuer
   dnsNames:
     - api.akademia.cc
     - akademia-api.arctix.dev

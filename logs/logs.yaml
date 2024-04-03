@@ -93,6 +93,7 @@ spec:
   secretName: logs-akademia-cc-tls
   issuerRef:
     name: letsencrypt-prod
+    kind: ClusterIssuer
   dnsNames:
     - logs.akademia.cc
 ---
