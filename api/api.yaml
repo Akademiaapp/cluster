@@ -102,3 +102,13 @@ spec:
                   number: 3000
             path: /
             pathType: Prefix
+    - host: akademia-api.arctix.dev
+      http:
+        paths:
+          - backend:
+              service:
+                name: akademia-api-service
+                port:
+                  number: 3000
+            path: /
+            pathType: Prefix
