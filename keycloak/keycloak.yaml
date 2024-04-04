@@ -22,7 +22,7 @@ spec:
     httpEnabled: true
   hostname:
     adminUrl: https://akademia-auth.arctix.dev/
-    hostname: auth.akademia.cc
+    hostname: akademia-auth.arctix.dev
   ingress:
     enabled: false
   unsupported:
