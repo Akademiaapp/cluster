@@ -36,6 +36,16 @@ spec:
             secretKeyRef:
               name: openobserve
               key: ZO_ROOT_USER_PASSWORD
+        - name: ADMIN_NAME
+          valueFrom:
+            secretKeyRef:
+              name: akademia-kc
+              key: ADMIN_NAME
+        - name: ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: akademia-kc
+              key: ADMIN_PASSWORD
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
