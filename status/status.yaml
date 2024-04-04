@@ -108,9 +108,20 @@ spec:
                   number: 3001
             path: /
             pathType: Prefix
+    - host: akademia-status.arctix.dev
+      http:
+        paths:
+          - backend:
+              service:
+                name: akademia-status-service
+                port:
+                  number: 3001
+            path: /
+            pathType: Prefix
   tls:
   - hosts:
     - status.akademia.cc
+    - akademia-status.arctix.dev
     secretName: status-akademia-cc-tls
 ---
 apiVersion: cert-manager.io/v1
@@ -125,3 +136,4 @@ spec:
     kind: ClusterIssuer
   dnsNames:
     - status.akademia.cc
+    - akademia-status.arctix.dev

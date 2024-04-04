@@ -92,3 +92,13 @@ spec:
                   number: 8090
             path: /
             pathType: Prefix
+    - host: akademia-collaboration.arctix.dev
+      http:
+        paths:
+          - backend:
+              service:
+                name: akademia-collaboration-service
+                port:
+                  number: 8090
+            path: /
+            pathType: Prefix
